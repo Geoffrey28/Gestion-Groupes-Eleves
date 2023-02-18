@@ -5,7 +5,6 @@ public class Classe {
 	private String nom;
 	private int nbEleves;
 	private Eleve[] lstEleves;
-	private Parent[] lstParent;
 	private Instituteur instituteur;
 	private final int NB_MAX = 20;
 	
@@ -21,6 +20,7 @@ public class Classe {
 	 * @param nom
 	 */
 	public Classe(String nom) {
+		this();
 		this.nom = nom;
 	}
 	
@@ -60,7 +60,35 @@ public class Classe {
 	 * @return the lstParent
 	 */
 	public Parent[] getListParent() {
-		return lstParent;
+		Parent[] result = new Parent[nbEleves];
+		int nbParents = 0;
+		for (int i = 0; i < nbEleves; i++) {
+			Eleve eleve = lstEleves[i];
+			Parent pCurrent = eleve.getReferent();
+			if (!contains(pCurrent, result, nbParents)) {
+				result[nbParents++] = pCurrent;
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param p         parent courant
+	 * @param parents   le tableau des parents
+	 * @param nbParents le nombre de parents actuel
+	 * @return Vérifie si un parent est déjà dans le tableau pour éviter les
+	 *         doublons
+	 */
+	private boolean contains(Parent p, Parent[] parents, int nbParents) {
+		int i = 0;
+
+		boolean isPresent = false;
+		while (i < nbParents && parents[i] != null && !isPresent) {
+			isPresent = p.equals(parents[i++]);
+		}
+
+		return isPresent;
 	}
 	
 	/**

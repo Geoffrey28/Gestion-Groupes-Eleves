@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Eleve extends Personne {
 
-	public Parent referent;
+	private Parent referent;
 	
 	public Eleve() {
 		super();

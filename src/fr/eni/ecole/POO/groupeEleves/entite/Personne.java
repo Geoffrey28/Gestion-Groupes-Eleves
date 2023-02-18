@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public class Personne {
 	
-	public String nom;
-	public String prenom;
-	public String adresse;
-	public LocalDate ddn;
+	private String nom;
+	private String prenom;
+	private String adresse;
+	private LocalDate ddn;
 	
 	
 	/**
@@ -25,6 +25,7 @@ public class Personne {
 	 * @param ddn
 	 */
 	public Personne(String nom, String prenom, String adresse, LocalDate ddn) {
+		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
